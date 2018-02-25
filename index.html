@@ -31,7 +31,7 @@
 
             <div class="col-md-9">
 
-                <svg class="plot" id="plot1" width="960" height="550"></svg>
+                <svg class="plot" id="plot1"></svg>
 
             </div>
             <div class="col-md-3">
@@ -39,6 +39,8 @@
                 <br>
                 <br>
                 <button onclick="check0()">Metadata</button>
+                <input type="checkbox" id="progression" onchange="progressionChecked()">
+                <label for="progression">Show progressions</label>
                 <br>
                 <br>
                 <button onclick="check1()">Insight Data</button>
@@ -66,7 +68,6 @@
         <br>
 
     </body>
-    <script src="./lib/jscolor.min.js"></script>
-    <script src="./lib/nearestColor.js"></script>
+    <script src="./js/dataArrays.js"></script>
     <script src="./js/sketch1.js"></script>
 </html>

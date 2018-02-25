@@ -16,137 +16,19 @@ var numRows = 15;
 var rectsArray = [];
 var dataTest = 'tpi';
 var insightTypeArray = [
-    {insightType:"overview", chartTypes:['KPI'],implicitInput:['tpi'],input1:['m'], input2:['m'],input3:[]},
-    {insightType:"overview", chartTypes:['profile'],implicitInput:['tpi'],input1:['nd'], input2:[],input3:[]},
-    {insightType:'comparison',chartTypes:['donut','bar','multiset bar'],implicitInput:['tpi'],input1:['m','nd'], input2:['m'],input3:[]},
-    {insightType:'trend',chartTypes:['line','area','bar'],implicitInput:[],input1:['m'], input2:['pd'],input3:[]},
-    {insightType:'trend',chartTypes:['line','area','bar'],implicitInput:['tpi'],input1:['m'], input2:['pd'],input3:[]},
-    {insightType:'table',chartTypes:['table'],implicitInput:[],input1:['m','nd'], input2:['m'],input3:[]}
+    {insightType:"overview", chartTypes:['KPI'],prog:null, nom:null, time:['tpi'], implicitInput:['tpi'],input1:['m'], input2:['m'],input3:[]},
+    {insightType:"overview", chartTypes:['profile'],prog:null, nom:true, time:['tpi'],implicitInput:['tpi'],input1:['nd'], input2:[],input3:[]},
+    {insightType:'comparison',chartTypes:['donut','bar','multiset bar'], prog:false, nom:true, time:['tpi','tpn'],implicitInput:['tpi'],input1:['m'], input2:['nd'],input3:[]},
+    {insightType:'trend',chartTypes:['line','area','bar'],prog:true, nom:null, time:['tpi','tpp'], implicitInput:['tpi'],input1:['m'], input2:['pd'],input3:[]},
+    {insightType:'table',chartTypes:['table'],prog:null, nom:null, time:['tpi','tpp','tpn'], implicitInput:[],input1:['m','nd'], input2:['m'],input3:[]}
 ];
 
-/*
- {class:'mg', components:[
- {name:'mgm',type:'m'},
- {name:'mgd',type:'d'}
- ]},
- {class:'mg/d', components:[
- {name:'mgm',type:'m'},
- {name:'mgd',type:'d'},
- {name:'d2',type:'d'}
- ]},
-*/
-
-//this array contains the general data configurations used in the chart
-var dataOptionsArray = [
-    {class:'m',
-        components:[
-            {name:'m1',type:'m'}
-        ]},
-    {class:'d',
-        components:[
-            {name:'d1',type:'d'}
-        ]},
-    {class:'m/m',
-        components:[
-            {name:'m1',type:'m'},
-            {name:'m2',type:'m'}
-        ]},
-    {class:'m/d', components:[
-        {name:'m1',type:'m'},
-        {name:'d1',type:'d'}
-    ]},
-    {class:'d/d', components:[
-        {name:'d1',type:'d'},
-        {name:'d2',type:'d'}
-    ]},
-    {class:'m/m/d', components:[
-        {name:'m1',type:'m'},
-        {name:'m2',type:'m'},
-        {name:'d1',type:'d'}
-    ]},
-    {class:'m/d/d', components:[
-        {name:'m1',type:'m'},
-        {name:'d1',type:'d'},
-        {name:'d2',type:'d'}
-    ]},
-    {class:'d/d/d', components:[
-        {name:'d1',type:'d'},
-        {name:'d2',type:'d'},
-        {name:'d3',type:'d'}
-    ]}
-];
-
-//this array populates the dataOptions array with the data available in my basket 'o data. Multiple combinations are allowed,
-//if the data can be mixed and matched in different ways, and there is one object for each combination
-//(i.e. if there are two dimensions, then m/d1/d2 and m/d2/d1 get different entries).
-
-//For this example, data available is m1, m2, d1, d2, d3
-var expandedDataOptionsArray = [
-    {class:'m',
-        components:[
-            {name:'m1',type:'m'}
-        ]},
-    {class:'d',
-        components:[
-            {name:'d1',type:'d'}
-        ]},
-    {class:'m/m',
-        components:[
-            {name:'m1',type:'m'},
-            {name:'m2',type:'m'}
-        ]},
-    {class:'m/d', components:[
-        {name:'m1',type:'m'},
-        {name:'d1',type:'d'}
-    ]},
-    {class:'d/d', components:[
-        {name:'d1',type:'d'},
-        {name:'d2',type:'d'}
-    ]},
-    {class:'m/m/d', components:[
-        {name:'m1',type:'m'},
-        {name:'m2',type:'m'},
-        {name:'d1',type:'d'}
-    ]},
-    {class:'m/d/d', components:[
-        {name:'m1',type:'m'},
-        {name:'d1',type:'d'},
-        {name:'d2',type:'d'}
-    ]},
-    {class:'d/d/d', components:[
-        {name:'d1',type:'d'},
-        {name:'d2',type:'d'},
-        {name:'d3',type:'d'}
-    ]}
-
-];
+/*Consider using for populating if statement in check 0: , array:['pd','tpp']*/
+var filterSettings = {
+    dimension:{pd: false, tpp:false}
+};
 
 
-var dataBasketArray = [
-    {class:'m',
-     components:[
-        {name:'m1',type:'m',unit:'test'}
-     ]},
-    {class:'m/m',
-        components:[
-            {name:'m1',type:'m', unit:'test'},
-            {name:'m2',type:'m',unit:'test'}
-        ]},
-    {class:'m/d', components:[
-        {name:'m1',type:'m', unit:'test'},
-        {name:'d1',type:'d',prog:true, nom:true, vis:true}
-    ]},
-    {class:'m/d', components:[
-        {name:'m1',type:'m', unit:'test'},
-        {name:'d1',type:'d',prog:false, nom:true, vis:true}
-    ]},
-    {class:'m/d/d', components:[
-        {name:'m1',type:'m', unit:'test'},
-        {name:'d1',type:'d',prog:false, nom:true, vis:true},
-        {name:'d2',type:'d',prog:true, nom:false, vis:true}
-    ]}
-    //'nd','m/m','m/d','d/d','m/m/m','m/m/d','m/d/d','d/d/d'
-];
 var reducedArray = [];
 
 drawColors();
@@ -224,6 +106,7 @@ function drawColors() {
     }
 
 function resetData(){
+
     reducedArray = [];
 
     g.selectAll('.elements')
@@ -232,31 +115,69 @@ function resetData(){
 
 //checks things set at the metadata level (right now, only whether a dimension is a progression)
 function check0 () {
-    var push = false;
 
-    //look at each array element
-    rectsArray.forEach(function(d){
-        //pull out all the dimension components
-        var temp = d.data.components.filter(function(e){return e.type == "d"});
+    if (filterSettings.dimension.pd){
 
-        //if you find a progressional dimension, set the push flag to true
-        if(temp) {
-            temp.forEach(function(d){
-                if (d.prog == true) {
-                    push = true;
-                }
-            })
-        }
+        //build up a string for filtering, using the array stored in the filterSettings object
+        //(Note: returns any object that meets ONE of the criteria in the filterSettings array)
+        var filterString = "e.type == " + '\'' ;
+        orString = "|| e.type ==";
+        filtersList = [];
 
-        //if the push flag has been set, add the entire array element to the reduced array
-        if (push){
-            reducedArray.push(d);
-            push = false;
-        }
-    });
+        //go through each key item in the filterSettings object, and check whether it is set to true. If it is, add it to the filtersList array.
+        Object.keys(filterSettings.dimension).forEach(function(d){
 
-    updateColor(reducedArray);
-    push = false;
+            if(filterSettings.dimension[d]){
+                filtersList.push(d);
+            }
+        });
+
+        console.log(filtersList);
+
+        filtersList.forEach(function(d,i){
+           if (i == 0){
+               filterString = filterString + d + '\'';
+           }
+           else{
+               filterString = filterString + orString + d + '\'';
+           }
+        });
+
+        console.log(filterString);
+        var push = false;
+
+        //check each element in rectsArray for the filters set in the filterSettings array
+        rectsArray.forEach(function(d){
+            var temp = d.data.components.filter(function(e){ return (filterString); });
+
+            console.log(temp);
+
+            //if you find a progressional dimension, set the push flag to true
+            if(temp) {
+                temp.forEach(function(d){
+                    if (d.prog == true) {
+                        push = true;
+                    }
+                })
+            }
+
+            //if the push flag has been set, add the entire array element to the reduced array
+            if (push){
+                reducedArray.push(d);
+                push = false;
+            }
+        });
+
+        updateColor(reducedArray);
+        push = false;
+
+    }
+    else {
+        resetData();
+
+    }
+
+
 }
 
 //Ignore for now this is part of the data config (are metrics linked, are time periods broken, etc.) and is done
@@ -264,7 +185,70 @@ function check0 () {
 //against the options listed in the rectsArray (should contain all combinations possible for data in collection; tpi, tpp, tpn, etc).
 //As long as the rectsArray uses some mixture of subcomponents from the basket o' data, include it in the reducedArray.
 function check1() {
+    if (filterSettings.time.value){
 
+        var push = false;
+
+        //if the reducedArray is populated, use it.
+        if (reducedArray.length > 0){
+
+            //look at each array element
+            reducedArray.forEach(function(d){
+                //check for progressional dimensions or time components in the components array
+                var temp = d.data.components.filter(function(e){ return (e.type == 'tpp'); });
+
+                //if you find a progressional dimension, set the push flag to true
+                if(temp) {
+                    temp.forEach(function(d){
+                        if (d.prog == true) {
+                            push = true;
+                        }
+                    })
+                }
+
+                //if the push flag has been set, add the entire array element to the reduced array
+                if (push){
+                    reducedArray.push(d);
+                    push = false;
+                }
+            });
+
+        }
+        //otherwise, use the original rectsArray
+        else{
+
+            //look at each array element
+            rectsArray.forEach(function(d){
+                //check for progressional dimensions or time components in the components array
+                var temp = d.data.components.filter(function(e){ return (e.type == 'tpp'); });
+
+                //if you find a progressional dimension, set the push flag to true
+                if(temp) {
+                    temp.forEach(function(d){
+                        if (d.prog == true) {
+                            push = true;
+                        }
+                    })
+                }
+
+                //if the push flag has been set, add the entire array element to the reduced array
+                if (push){
+                    reducedArray.push(d);
+                    push = false;
+                }
+            });
+
+        }
+
+
+        updateColor(reducedArray);
+        push = false;
+
+    }
+    else if (!filterSettings.progression.value){
+        resetData();
+
+    }
 }
 
 function check2 (){
@@ -303,4 +287,15 @@ function updateColor (currentArray){
         });
 
 
+}
+
+function progressionChecked() {
+    if (document.getElementById("progression").checked){
+        filterSettings.dimension.pd = true;
+        check0();
+    }
+    else if (!document.getElementById("progression").checked){
+        filterSettings.dimension.pd = false;
+        check0();
+    }
 }
