@@ -38,7 +38,9 @@
                 <button onclick="resetData()">Reset Data</button>
                 <br>
                 <br>
-                <button onclick="check0()">Metadata</button>
+                <!--<button onclick="check0()">Metadata</button>-->
+                Metadata
+                <br>
                 <input type="checkbox" id="progression" onchange="progressionChecked()">
                 <label for="progression">Show progressions</label>
                 <br>
@@ -46,13 +48,31 @@
                 <button onclick="check1()">Insight Data</button>
                 <br>
                 <br>
-                <button onclick="check2()">Data Restrictions</button>
+                Data Restrictions
+                <br>
+                <input type="checkbox" id="tpi" onchange="tpiChecked()" checked>
+                <label for="tpi">Time period as interval</label>
+                <br>
+                <input type="checkbox" id="tpp" onchange="tppChecked()" checked>
+                <label for="tpp">Time period as progression</label>
+                <br>
+                <input type="checkbox" id="tpn" onchange="tpnChecked()" checked>
+                <label for="trend">Time period as nominal</label>
                 <br>
                 <br>
                 <button onclick="check3()">Tasks</button>
                 <br>
                 <br>
-                <button onclick="check4()">Insight Type</button>
+                Insight Type
+                <br>
+                <input type="checkbox" id="overview" onchange="overviewChecked()" checked>
+                <label for="overview">Overview</label>
+                <br>
+                <input type="checkbox" id="comparison" onchange="comparisonChecked()" checked>
+                <label for="comparison">Comparison</label>
+                <br>
+                <input type="checkbox" id="trend" onchange="trendChecked()" checked>
+                <label for="trend">Trend</label>
                 <br>
                 <br>
                 <button onclick="check5()">Chart Type</button>
