@@ -348,7 +348,12 @@ function updateColor (currentArray){
                 return 'black';
             }
             else{
-                return 'white';
+                if(d3.select(this).attr('fill')=="black"){
+                     return '#f2f2f2';
+                }
+                else{
+                    return 'white';
+                }
             }
 
         });

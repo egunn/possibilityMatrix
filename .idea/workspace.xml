@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="5d56cec5-98a4-4def-b875-8505ed44c3b4" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.html" afterPath="$PROJECT_DIR$/index.html" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/dataArrays.js" afterPath="$PROJECT_DIR$/js/dataArrays.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/hours.txt" afterPath="$PROJECT_DIR$/hours.txt" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/js/sketch1.js" afterPath="$PROJECT_DIR$/js/sketch1.js" />
     </list>
     <ignored path="$PROJECT_DIR$/.tmp/" />
@@ -49,8 +47,8 @@
       <file leaf-file-name="sketch1.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/js/sketch1.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="306">
-              <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+            <state relative-caret-position="418">
+              <caret line="351" column="36" lean-forward="false" selection-start-line="351" selection-start-column="36" selection-end-line="351" selection-end-column="36" />
               <folding />
             </state>
           </provider>
@@ -248,12 +246,12 @@
       <option name="presentableId" value="Default" />
       <updated>1519435777517</updated>
       <workItem from="1519435783856" duration="18887000" />
-      <workItem from="1519519894034" duration="20457000" />
+      <workItem from="1519519894034" duration="20949000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="39344000" />
+    <option name="totallyTimeSpent" value="39836000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -346,8 +344,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/js/sketch1.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="306">
-          <caret line="46" column="0" lean-forward="true" selection-start-line="46" selection-start-column="0" selection-end-line="46" selection-end-column="0" />
+        <state relative-caret-position="418">
+          <caret line="351" column="36" lean-forward="false" selection-start-line="351" selection-start-column="36" selection-end-line="351" selection-end-column="36" />
           <folding />
         </state>
       </provider>
